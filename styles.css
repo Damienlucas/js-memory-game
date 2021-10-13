@@ -2,12 +2,96 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    --primary-color: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    --button-color: green;
+    --text-color: gray;
+}
+.dark-theme{
+    --primary-color: linear-gradient(to right, #DB9898 0%, #A5AAA8 19%, #4BAAC2 42%, #9A88BA 79%, #74B6C7 100%);
+    --button-color: green;
+    --text-color: white;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-color);
+}
+h1{
+    margin-bottom: 40px;
+}
+#box-resultat{
+    text-align: center;
+    
+}
 button{
     width: 100px;
     height: 100px;
-
+    background: url(./images/recto/smiley-g420d02d34_640.jpg);
+    margin: 10px;
+    font-size: 1rem;
+    vertical-align: middle;
 }
 img{
     width: 100px;
     height: 100px;
+    margin: 10px;
+    vertical-align: middle;
+}
+#rejouer{
+    background: chartreuse;
+    color: white;
+    width: 80px;
+    height: 50px;
+    padding: 5px;
+    display: none;
+}
+/* -------------------------------mode dark-------------------------- */
+#icon{
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    margin-right: 10px;
+}
+#icon-sun, #icon-moon{
+    border-radius: 5px;
+    padding: 10px;
+    border: 3px solid var(--text-color);
+    font-size: 25px;
+}
+#icon-sun{
+    fill: var(--text-color);
+    display: none;
+}
+#icon-moon{
+    fill: var(--text-color);
+}
+/* -------------------------------explosion confettis---------------- */
+.confettis{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slot{
+    position: relative;
+    perspective: 1000px;
+}
+.slot div{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+/* ----------------------------media query-------------------- */
+@media(min-width: 1200px){
+  
 }

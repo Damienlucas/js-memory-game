@@ -1,6 +1,14 @@
 const divResultat = document.querySelector("#resultat");
 divResultat.innerHTML = "coucou";
 
+const btnRejouer = document.getElementById('rejouer');
+// mise en place du bouton rejouer
+
+var score = 0;
+
+
+
+
 var tabJeu = [
     // on créé un tableau de 4 lignes "[]" avec 4 colonnes (chuffres entre les parentheses)
     [0,0,0,0],
@@ -38,14 +46,14 @@ function afficherTableau (){
             // là on refait pour chaque elements à l'intérieur des lignes (ici 4)
             if(tabJeu[i][j] === 0){
      // si i et j sont valeur 0 on affiche le bouton
-                txt += "<button class='btn btn-primary m-2' onClick='verif(\""+i+"-"+j+"\")'>Afficher</button>"
+                txt += "<button onClick='verif(\""+i+"-"+j+"\")'></button>"
                 // la on demande de créer 4 boutons avec les classes bootstrap dans les lignes
                 // avec onClick on demande que quand on clique sur le bouton cela execute la fonction vefif et renvoie la position du bouton (ce qu'il y a entre () donc nos variables i et j puisqu on les a definis comme ça dans notre tableau)
                 // "+i+"-"+j+" renvoie des chiffres et cela va generer des erreurs il faut donc les transformer en chaine de caractere en rajoutant au debut et à la fin \" car \ va desactiver les " que l on a mis avant la balise button (txt += "<button)
             // je prefere creer un fichier css mais on peut aussi intégrer du style directement comme ceci txt += "<button class='btn btn-primary m-2' style='width:100px;height:100px'>Afficher</button>" 
             }
             else{
-                txt += "<img src='"+getImage(tabJeu[i][j])+"' class='m-2'>";
+                txt += "<img src='"+getImage(tabJeu[i][j])+"'>";
             }
     // sinon on génère une image qui correspondra au valeur i et j et en fonction du switch dans la fonction getImage
         }
@@ -105,11 +113,19 @@ function verif(bouton){
                         tabJeu[ligne][colonne] = 0;
                         tabJeu[oldSelection[0]][oldSelection[1]] = 0;
                         // on réinitialise les valeurs donc le tableau
+                }
+                else{
+                    score++;
+                    if(score == 8){
+                        btnRejouer.style.display="block";
+                        fiesta();
+                        alert("win");
                     }
-                    afficherTableau();
-                    ready = true;
-                    // pour dire à l'utilisateur maintenant tu peux rappuyer sur un autre bouton
-                    nbAffiche = 0;
+                }
+                afficherTableau();
+                ready = true;
+                // pour dire à l'utilisateur maintenant tu peux rappuyer sur un autre bouton
+                nbAffiche = 0;
             // là on remet nbAffiche à 0
                     oldSelection = [ligne,colonne];
             },1000)   
@@ -118,9 +134,11 @@ function verif(bouton){
         else {
             oldSelection = [ligne,colonne];
         }
-
-        
     }
+    btnRejouer.addEventListener('click', () => {
+        document.location.reload(true);
+        // la on lui demande de relancer la page donc redemarrage du jeu
+    })
 }
 
 function genereTableauAleatoire(){
@@ -152,4 +170,54 @@ function genereTableauAleatoire(){
         // permet de générer une ligne à mon tableau
     }
     return tab;
+}
+// -------------------------------explosion confettis-----------------------------
+const containerSlot = document.querySelector('.slot');
+const emojis = ["⭐", "🌟", "🌠", "🏆"];
+
+function fiesta(){
+
+    if(isTweening()) return;
+
+    for(let i = 0; i < 200; i++){
+        const confetti = document.createElement('div');
+        confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        containerSlot.appendChild(confetti);
+    }
+    animateConfettis();
+}
+function animateConfettis(){
+    const TLCONF = gsap.timeline();
+    TLCONF
+    .to('.slot div', { 
+        y: "random(-300,300)",
+        x: "random(-300,300)",
+        z: "random(0,1000)",
+        rotation: "random(-90,90)",
+        duration: 2,
+    })
+    .to('.slot div', {autoAlpha: 0, duration: 0.4}, '-=0.2')
+    .add(() => {
+        containerSlot.innerHTML = "";
+    })
+}
+function isTweening(){
+    return gsap.isTweening('.slot div');
+}
+// ----------------------------------dark-theme-----------------------
+const iconMoon = document.getElementById("icon-moon");
+const iconSun = document.getElementById("icon-sun");
+const icon = document.getElementById("icon");
+
+
+icon.onclick = function (){
+    document.body.classList.toggle("dark-theme");
+    if(document.body.classList.contains("dark-theme")){
+        iconSun.style.display = "block";
+        iconMoon.style.display = "none";
+    }
+    else{
+        iconSun.style.display = "none";
+        iconMoon.style.display = "block";
+    }
 }
