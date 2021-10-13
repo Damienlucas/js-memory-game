@@ -9,12 +9,13 @@ var tabJeu = [
     [0,0,0,0],
 ];
 
-var tabResultat = [
-    [1,4,3,4],
-    [1,2,3,2],
-    [7,8,6,5],
-    [8,7,5,6],
-];
+// var tabResultat = [
+//     [1,4,3,4],
+//     [1,2,3,2],
+//     [7,8,6,5],
+//     [8,7,5,6],
+// ];
+var tabResultat = genereTableauAleatoire();
 
 var oldSelection = [];
 var nbAffiche = 0;
@@ -120,4 +121,35 @@ function verif(bouton){
 
         
     }
+}
+
+function genereTableauAleatoire(){
+    var tab = [];
+
+    var nbImagePosition = [0,0,0,0,0,0,0,0];
+    // cette variable contient le nombre d'images que l'on a mis dans le tableau
+
+    for(var i = 0 ; i < 4 ; i++){
+        var ligne = [];
+        for(var j = 0 ; j < 4 ; j++){
+            var fin = false;
+            // on créé cette variable pour générer une fin à notre création d'images
+            while(!fin){
+            // tant que non fin donc tant que while n'est pas différent de false on continue à générer une image
+                var randomImage = Math.floor(Math.random() * 8);
+                // on genere un chiffre aleatoire entre 0 et 1 avec Math.random que l on multiplie par 8 car 8 images ici et Math.floor permet d'arondir à l'entier inférieur (ici on aura 7 et non 8 mais c'est normal car nos images sont dans un tableau donc commence à 0 et non 1)
+                if(nbImagePosition[randomImage] < 2){
+                    // si la valeur randomImage est inférieur à 2 (donc si on a moins de 2 images) dans notre tableau nbImagePosition
+                    ligne.push(randomImage+1);
+                    // ici on rajoute 1 car dans notre switch les case commence à 1 et non 0
+                    nbImagePosition[randomImage]++;
+                    // j'incrémente ma valeur de nbImagePosition donc je passe à la virgule suivante
+                    fin = true;
+                }
+            }
+        }
+        tab.push(ligne);
+        // permet de générer une ligne à mon tableau
+    }
+    return tab;
 }
