@@ -4,7 +4,7 @@ divResultat.innerHTML = "coucou";
 const btnRejouer = document.getElementById('rejouer');
 // mise en place du bouton rejouer
 
-var score = 0;
+var paire = 0;
 
 
 
@@ -115,8 +115,8 @@ function verif(bouton){
                         // on réinitialise les valeurs donc le tableau
                 }
                 else{
-                    score++;
-                    if(score == 8){
+                    paire++;
+                    if(paire == 8){
                         btnRejouer.style.display="block";
                         fiesta();
                         alert("win");
