@@ -23,6 +23,7 @@
     --difficile-color: #C7232C;
 }
 body{
+    overflow: hidden;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -52,25 +53,38 @@ h4{
     text-shadow: var(--texShadow);
     margin: 20px 0;
 }
+#jeu{
+    display: none;
+}
+#choix{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: var(--texShadow);
+    box-shadow: var(--boxShadow);
+    padding: 80px;
+}
 #box-resultat{
     text-align: center;
     
 }
 button{
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     background: url(../images/recto/smiley-g420d02d34_640.jpg);
     margin: 10px;
     font-size: 1rem;
     vertical-align: middle;
 }
 img{
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     margin: 10px;
     vertical-align: middle;
 }
-#rejouer, #niveauBtn{
+#rejouer, #niveauBtn, #facile, #moyen, #difficile{
     background: var(--button-color);
     color: var(--text-color);
     width: 80px;
@@ -78,15 +92,25 @@ img{
     padding: 5px;
     margin: 20px 0;
 }
+.div-button{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
 #btn-indications{
     width: 100px;
     height: 50px;
     padding: 5px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #span-facile, #span-moyen, #span-difficile{
     padding: 3px 20px;
     border-radius: 5px;
-    /* display: none; */
+    display: none;
     font-size: 0.7rem;
 }
 #span-facile{
@@ -193,7 +217,7 @@ img{
     #message p{
         font-size: 2.1rem;
     }
-    #rejouer, #niveauBtn{
+    #rejouer, #niveauBtn, #facile, #moyen, #difficile{
         width: 180px;
         height: 70px;
         padding: 5px;
@@ -211,27 +235,28 @@ img{
     #message p{
         font-size: 2.2rem;
     }
-    #rejouer, #niveauBtn{
-        width: 180px;
-        height: 70px;
-        padding: 8px;
-        font-size: 1.9rem;
+    #rejouer, #niveauBtn, #facile, #moyen, #difficile{
+        width: 130px;
+        height: 60px;
+        padding: 5px;
+        font-size: 1.8rem;
         margin: 30px 0;
     }
     #btn-indications{
-        width: 200px;
-        height: 70px;
+        width: 180px;
+        height: 55px;
         padding: 8px;
-        font-size: 1.9rem; 
+        font-size: 1.8rem; 
     }
 }
 @media(min-width: 1200px){
     #message p{
         font-size: 2.4rem;
     }
-    #rejouer, #btn-indications, #niveauBtn{
-        font-size: 2rem;
+    #rejouer, #btn-indications, #niveauBtn, #facile, #moyen, #difficile{
+        font-size: 1.8rem;
     }
     #span-facile, #span-moyen, #span-difficile{
         font-size: 1.5rem;
+}
 }
