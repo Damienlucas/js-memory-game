@@ -1,6 +1,64 @@
+// -------------------bootstrap offcanvas-------------------
+var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
+  return new bootstrap.Offcanvas(offcanvasEl)
+})
+// ----------------------------------dark-theme-----------------------
+const iconMoon = document.getElementById("icon-moon");
+const iconSun = document.getElementById("icon-sun");
+const icon = document.getElementById("icon");
+
+
+icon.onclick = function (){
+    document.body.classList.toggle("dark-theme");
+    if(document.body.classList.contains("dark-theme")){
+        iconSun.style.display = "block";
+        iconMoon.style.display = "none";
+    }
+    else{
+        iconSun.style.display = "none";
+        iconMoon.style.display = "block";
+    }
+}
+// -------------------------------explosion confettis-----------------------------
+const containerSlot = document.querySelector('.slot');
+const emojis = ["⭐", "🌟", "🌠", "🏆"];
+
+function fiesta(){
+
+    if(isTweening()) return;
+
+    for(let i = 0; i < 200; i++){
+        const confetti = document.createElement('div');
+        confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        containerSlot.appendChild(confetti);
+    }
+    animateConfettis();
+}
+function animateConfettis(){
+    const TLCONF = gsap.timeline();
+    TLCONF
+    .to('.slot div', { 
+        y: "random(-300,300)",
+        x: "random(-300,300)",
+        z: "random(0,1000)",
+        rotation: "random(-90,90)",
+        duration: 2,
+    })
+    .to('.slot div', {autoAlpha: 0, duration: 0.4}, '-=0.2')
+    .add(() => {
+        containerSlot.innerHTML = "";
+    })
+}
+function isTweening(){
+    return gsap.isTweening('.slot div');
+}
+// ---------------------jeu------------------------
 const divResultat = document.querySelector("#resultat");
 divResultat.innerHTML = "coucou";
 
+const jeu = document.getElementById('jeu');
+const message = document.getElementById('message');
 const btnRejouer = document.getElementById('rejouer');
 // mise en place du bouton rejouer
 
@@ -117,9 +175,9 @@ function verif(bouton){
                 else{
                     paire++;
                     if(paire == 8){
-                        btnRejouer.style.display="block";
+                        jeu.style.display="none";
+                        message.style.display="block";
                         fiesta();
-                        alert("win");
                     }
                 }
                 afficherTableau();
@@ -128,7 +186,7 @@ function verif(bouton){
                 nbAffiche = 0;
             // là on remet nbAffiche à 0
                     oldSelection = [ligne,colonne];
-            },1000)   
+            },500)   
             // on indique combien de millisecondes aprés le setTimeout réalisera la fonction fléchée 
         }
         else {
@@ -170,54 +228,4 @@ function genereTableauAleatoire(){
         // permet de générer une ligne à mon tableau
     }
     return tab;
-}
-// -------------------------------explosion confettis-----------------------------
-const containerSlot = document.querySelector('.slot');
-const emojis = ["⭐", "🌟", "🌠", "🏆"];
-
-function fiesta(){
-
-    if(isTweening()) return;
-
-    for(let i = 0; i < 200; i++){
-        const confetti = document.createElement('div');
-        confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-        containerSlot.appendChild(confetti);
-    }
-    animateConfettis();
-}
-function animateConfettis(){
-    const TLCONF = gsap.timeline();
-    TLCONF
-    .to('.slot div', { 
-        y: "random(-300,300)",
-        x: "random(-300,300)",
-        z: "random(0,1000)",
-        rotation: "random(-90,90)",
-        duration: 2,
-    })
-    .to('.slot div', {autoAlpha: 0, duration: 0.4}, '-=0.2')
-    .add(() => {
-        containerSlot.innerHTML = "";
-    })
-}
-function isTweening(){
-    return gsap.isTweening('.slot div');
-}
-// ----------------------------------dark-theme-----------------------
-const iconMoon = document.getElementById("icon-moon");
-const iconSun = document.getElementById("icon-sun");
-const icon = document.getElementById("icon");
-
-
-icon.onclick = function (){
-    document.body.classList.toggle("dark-theme");
-    if(document.body.classList.contains("dark-theme")){
-        iconSun.style.display = "block";
-        iconMoon.style.display = "none";
-    }
-    else{
-        iconSun.style.display = "none";
-        iconMoon.style.display = "block";
-    }
 }

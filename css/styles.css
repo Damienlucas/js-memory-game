@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --texShadow: 0 2px 2px rgba(0,0,0, .7);
+    --boxShadow: 0 0px 10px rgba(0,0,0, .2);
+    --primary-color: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    --button-color: #9567a1;
+    --text-color: #F4EFFF;
+    --facile-color: #391FEC;
+    --moyen-color: #FBA627;
+    --difficile-color: #FB2732;
+}
+.dark-theme{
+    --texShadow: 0 2px 2px rgba(99, 93, 93, 0.7);
+    --boxShadow: 0 0px 10px rgba(252, 248, 248, 0.959);
+    --primary-color: linear-gradient(to right, #DB9898 0%, #A5AAA8 19%, #4BAAC2 42%, #9A88BA 79%, #74B6C7 100%);
+    --button-color:#825B8C;
+    --text-color: #BAB6C2;
+    --facile-color: #2D19B7;
+    --moyen-color: #DA9022;
+    --difficile-color: #C7232C;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-color);
+}
+.flex-columen-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.offcanvas-header, .offcanvas-body{
+    background: var(--primary-color);
+}
+#box-jeu{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+h1{
+    margin-bottom: 40px;
+    text-shadow: var(--texShadow);
+}
+h4{
+    text-shadow: var(--texShadow);
+    margin: 20px 0;
+}
+#box-resultat{
+    text-align: center;
+    
+}
+button{
+    width: 100px;
+    height: 100px;
+    background: url(../images/recto/smiley-g420d02d34_640.jpg);
+    margin: 10px;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+img{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    vertical-align: middle;
+}
+#rejouer, #niveauBtn{
+    background: var(--button-color);
+    color: var(--text-color);
+    width: 80px;
+    height: 50px;
+    padding: 5px;
+    margin: 20px 0;
+}
+#btn-indications{
+    width: 100px;
+    height: 50px;
+    padding: 5px; 
+}
+#span-facile, #span-moyen, #span-difficile{
+    padding: 3px 20px;
+    border-radius: 5px;
+    /* display: none; */
+    font-size: 0.7rem;
+}
+#span-facile{
+    background-color: var(--facile-color);
+    color: white;
+}
+#span-moyen{
+    background-color: var(--moyen-color);
+    color: white;
+}
+#span-difficile{
+    background-color: var(--difficile-color);
+    color: white;
+}
+#div-difficulte{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+#details{
+    text-align: justify;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+#message{
+    display: none;
+    box-shadow: var(--boxShadow);
+    padding: 10px;
+}
+#message p{
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-shadow: var(--texShadow);
+    animation: clignote 3s linear infinite;
+    transition: 0.5s;
+}
+@keyframes clignote{
+    0%{ 
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/* -------------------------------mode dark-------------------------- */
+#icon{
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    margin-right: 10px;
+}
+#icon-sun, #icon-moon{
+    border-radius: 5px;
+    padding: 10px;
+    border: 3px solid var(--text-color);
+    font-size: 25px;
+}
+#icon-sun{
+    fill: var(--text-color);
+    display: none;
+}
+#icon-moon{
+    fill: var(--text-color);
+}
+/* -------------------------------explosion confettis---------------- */
+.confettis{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slot{
+    position: relative;
+    perspective: 1000px;
+}
+.slot div{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+/* ----------------------------media query-------------------- */
+@media(min-width: 768px){
+    #message p{
+        font-size: 2rem;
+    }
+    #message{
+        padding: 40px;
+    }
+    #span-facile, #span-moyen, #span-difficile{
+        font-size: 1.2rem;
+    }
+}
+@media(min-width: 992px){
+    #message p{
+        font-size: 2.1rem;
+    }
+    #rejouer, #niveauBtn{
+        width: 180px;
+        height: 70px;
+        padding: 5px;
+        font-size: 1.7rem;
+        margin: 25px 0;
+    }
+    #btn-indications{
+        width: 200px;
+        height: 70px;
+        padding: 5px;
+        font-size: 1.7rem;
+    }
+}
+@media(min-width: 1200px){
+    #message p{
+        font-size: 2.2rem;
+    }
+    #rejouer, #niveauBtn{
+        width: 180px;
+        height: 70px;
+        padding: 8px;
+        font-size: 1.9rem;
+        margin: 30px 0;
+    }
+    #btn-indications{
+        width: 200px;
+        height: 70px;
+        padding: 8px;
+        font-size: 1.9rem; 
+    }
+}
+@media(min-width: 1200px){
+    #message p{
+        font-size: 2.4rem;
+    }
+    #rejouer, #btn-indications, #niveauBtn{
+        font-size: 2rem;
+    }
+    #span-facile, #span-moyen, #span-difficile{
+        font-size: 1.5rem;
+}
